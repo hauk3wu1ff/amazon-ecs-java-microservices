@@ -107,3 +107,39 @@ supported endpoints  are /, /pet, /vet, /owner, /visit
 ## NextStep
 
 [Lets break this app into microservices](https://github.com/awslabs/aws-java-microservice-refarch/tree/master/2_ECS_Java_Spring_PetClinic_Microservices)
+
+## What I used on the Cloud9 EC2 Machine
+```
+devuser:~/environment/amazon-ecs-java-microservices/1_ECS_Java_Spring_PetClinic (master) $ history
+    1  java -version
+    2  mvn -version
+    3  git clone https://github.com/hauk3wu1ff/amazon-ecs-java-microservices.git
+    4  sudo yum install java-1.8.0-openjdk-devel
+    5  sudo alternatives --config java
+    6  sudo yum remove java-1.7.0-openjdk-devel
+    7  sudo alternatives --config java
+    8  java -version
+    9  ls
+   10  ls ~
+   11  wget http://apache.spinellicreations.com/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz
+   12  tar xzvf apache-maven-3.5.3-bin.tar.gz
+   13  echo $JAVA_HOME
+   14  ls $JAVA_HOME\bin
+   15  ls $JAVA_HOME/bin
+   16  ls
+   17  export PATH=~/environment/apache-maven-3.5.3/bin:$PATH
+   18  rm apache-maven-3.5.3-bin.tar.gz 
+   19  mvn --version
+   20  docker info
+   21  ls
+   22  cd amazon-ecs-java-microservices/1_ECS_Java_Spring_PetClinic/
+   23  mvn package
+   24  ls -alF target/
+   25  java -jar target/spring-petclinic-rest-1.7.jar
+   26  python setup.py -m setup -r eu-west-1
+   27  python -version
+   28  python -m pip install --user boto3
+   29  python setup.py -m setup -r eu-west-1
+   30  python setup.py -m cleanup -r eu-west-1
+   31  history
+```
