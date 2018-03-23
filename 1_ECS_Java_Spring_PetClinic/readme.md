@@ -142,4 +142,16 @@ devuser:~/environment/amazon-ecs-java-microservices/1_ECS_Java_Spring_PetClinic 
    29  python setup.py -m setup -r eu-west-1
    30  python setup.py -m cleanup -r eu-west-1
    31  history
+---
+IAM actions are mostly disallowed when using Cloud9 with temporary permissions
+https://docs.aws.amazon.com/cloud9/latest/user-guide/auth-and-access-control.html#auth-and-access-control-temporary-managed-credentials
+
+export AWS_ACCESS_KEY_ID=YOUR-ACCESS-KEY-ID
+export AWS_SECRET_ACCESS_KEY=YOUR-SECRET-ACCESS-KEY
+export AWS_DEFAULT_REGION=YOUR-DEFAULT-REGION-ID
+---
+Source the ~/.bashrc file to load these new environment variables.
+. ~/.bashrc
+---------Get credentials to configure docker login on EC2 machine----------
+   aws ecr get-login
 ```
