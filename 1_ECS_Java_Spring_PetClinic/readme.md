@@ -154,4 +154,7 @@ Source the ~/.bashrc file to load these new environment variables.
 . ~/.bashrc
 ---------Get credentials to configure docker login on EC2 machine----------
    aws ecr get-login
+
+----------------- PYTHONPATH ------------------------------------
+/usr/local/lib/python2.7/dist-packages:/usr/local/lib/python3.4/dist-packages:/usr/local/lib/python3.5/dist-packages
 ```
