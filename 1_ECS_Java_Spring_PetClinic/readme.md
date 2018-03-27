@@ -154,6 +154,11 @@ Source the ~/.bashrc file to load these new environment variables.
 . ~/.bashrc
 ---------Get credentials to configure docker login on EC2 machine----------
    aws ecr get-login
+
+----------------- PYTHONPATH ------------------------------------
+/usr/local/lib/python2.7/dist-packages:/usr/local/lib/python3.4/dist-packages:/usr/local/lib/python3.5/dist-packages
+
 ```
 
 [The Blog article to go with the example](https://aws.amazon.com/blogs/compute/deploying-java-microservices-on-amazon-ec2-container-service/)
+
