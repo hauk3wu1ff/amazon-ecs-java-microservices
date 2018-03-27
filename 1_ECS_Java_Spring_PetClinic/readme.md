@@ -155,3 +155,5 @@ Source the ~/.bashrc file to load these new environment variables.
 ---------Get credentials to configure docker login on EC2 machine----------
    aws ecr get-login
 ```
+
+[The Blog article to go with the example](https://aws.amazon.com/blogs/compute/deploying-java-microservices-on-amazon-ec2-container-service/)
