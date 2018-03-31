@@ -162,3 +162,6 @@ Source the ~/.bashrc file to load these new environment variables.
 
 [The Blog article to go with the example](https://aws.amazon.com/blogs/compute/deploying-java-microservices-on-amazon-ec2-container-service/)
 
+The AMI amzn-ami-2016.09.f-amazon-ecs-optimized used in the original project is no longer available on [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B00U6QTYI2). Currently the lasted ecs optimized image available is amzn-ami-2017.09.k-amazon-ecs-optimized
+
+The latest AMI image optimized for the Elastic Container Service seems to be always available through  [here](https://aws.amazon.com/marketplace/pp/B06XS8WHGJ?qid=1522499681480&sr=0-1&ref_=srh_res_product_title) on the AWS Marketplace. Also see [ECS documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)  
