@@ -54,7 +54,7 @@ def create_ecs_cluster(stack_name):
             {
                 'Name': 'name',
                 'Values': [
-                    'amzn-ami-2016.09.f-amazon-ecs-optimized',
+                    'amzn-ami-2017.09.k-amazon-ecs-optimized'
                 ]
             },
         ]

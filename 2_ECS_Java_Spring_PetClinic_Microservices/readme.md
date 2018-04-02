@@ -14,7 +14,7 @@ __Independent scaling:__ When features are broken out into microservices then th
 
 __Development velocity__: Microservices can enable a team to build faster by lowering the risk of development. In a monolith adding a new feature can potentially impact every other feature that the monolith contains. Developers must carefully consider the impact of any code they add, and ensure that they don't break anything. On the other hand a proper microservice architecture has new code for a new feature going into a new service. Developers can be confident that any code they write will actually not be able to impact the existing code at all unless they explictly write a connection between two microservices.
 
-## Application Changes for Microsevices
+## Application Changes for Microservices
 
 __Define microservice boundaries:__ Defining the boundaries for services is specific to your application's design, but for this REST API one fairly clear approach to breaking it up is to make one service for each of the top level classes of objects that the API serves:
 
@@ -52,4 +52,69 @@ supported endpoints are /, /pet, /vet, /owner, /visit
 
 1.  Run ```python setup.py -m cleanup -r <your region>```
   
+## Running on AWS Cloud9 Notes
 
+General reference for using ECS: [The Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide)
+
+In the setup.py script environment variables are used to configure Spring Boot to connect to the mysql db, e.g. the environment variable SPRING_DATASOURCE_URL. For reference on Spring auto configuration see [Deploying a Spring Boot Application on AWS Using AWS Elastic Beanstalk](https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/) and the [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html).
+
+This is also explained in the original blog article [Deploying Java Microservices on Amazon Elastic Container Service](https://aws.amazon.com/blogs/compute/deploying-java-microservices-on-amazon-ec2-container-service/).
+
+The file \src\main\docker\spring-petclinic-rest-pet.yml is a docker compose file. For reference, see [Tutorial: Creating a Cluster with an EC2 Task Using the ECS CLI](Tutorial: Creating a Cluster with an EC2 Task Using the ECS CLI). I think the compose file / docker compose is NOT used in this project. The container for each service is configured in setup.py starting in line 446:
+```PYTHON
+        logger.info('Create Task Definition for: ' + service_list[service])
+        containerDefinitions = [
+            {
+                'name': service,
+                'image': repository_uri[service_list.keys().index(service)][service] + ':latest',
+                'essential': True,
+                'portMappings': [
+                    {
+                        'containerPort': int(service_list[service]),
+                        'hostPort': 0
+                    }
+                ],
+                'memory': 1024,
+                'cpu': 1024,
+                'environment': [
+                    {
+                        'name': 'SERVICE_ENDPOINT',
+                        'value': elb_dns
+                    },
+                    {
+                        'name': 'SPRING_PROFILES_ACTIVE',
+                        'value': 'mysql'
+                    },
+                    {
+                        'name': 'SPRING_DATASOURCE_URL',
+                        'value': my_sql_options['dns_name']
+                    },
+                    {
+                        'name': 'SPRING_DATASOURCE_USERNAME',
+                        'value': my_sql_options['username']
+                    },
+                    {
+                        'name': 'SPRING_DATASOURCE_PASSWORD',
+                        'value': my_sql_options['password']
+                    }
+                ],
+                'dockerLabels': {
+                    'string': 'string'
+                },
+                'logConfiguration': {
+                    'logDriver': 'awslogs',
+                    'options': {
+                        'awslogs-group': "ECSLogGroup-" + project_name,
+                        'awslogs-region': region,
+                        'awslogs-stream-prefix': project_name
+                    }
+                }
+            }
+        ]
+        register_task_response = ecs_client.register_task_definition(
+            family=service,
+            taskRoleArn=role_arns['taskrolearn'],
+            networkMode='bridge',
+            containerDefinitions=containerDefinitions
+        )
+```
