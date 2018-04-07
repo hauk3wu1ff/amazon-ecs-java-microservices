@@ -118,3 +118,38 @@ The file \src\main\docker\spring-petclinic-rest-pet.yml is a docker compose file
             containerDefinitions=containerDefinitions
         )
 ```
+
+## What I used on the Cloud9 EC2 Machine
+```
+ git clone https://github.com/hauk3wu1ff/amazon-ecs-java-microservices.git
+ # run shell-script file to install java stuff, needs more work
+
+ # Update ~.bashrc: Append aws env variables AND maven/bin to $PATH
+ # Then "source" it: . ~.bashrc
+
+ # Create ~/.docker folder by logging into docker for the first time
+ # Run: aws ecr get-login
+ # then remove '-e none' from output and run docker login command
+
+ # Run setup.py
+ python setup.py -m setup -r eu-west-1
+
+ -----
+#running setup.py in debugger in Cloud9 IDE
+#set CWD as: ~/environment/amazon-ecs-java-microservices/2_ECS_Java_Spring_PetClinic_Microservices
+#
+#Set Command as: #~/environment/amazon-ecs-java-microservices/2_ECS_Java_Spring_PetClinic_Microservices/setup.py -m #setup -r eu-west-1
+ ---
+IAM actions are mostly disallowed when using Cloud9 with temporary permissions
+https://docs.aws.amazon.com/cloud9/latest/user-guide/auth-and-access-control.html#auth-and-access-control-temporary-managed-credentials
+
+export AWS_ACCESS_KEY_ID=YOUR-ACCESS-KEY-ID
+export AWS_SECRET_ACCESS_KEY=YOUR-SECRET-ACCESS-KEY
+export AWS_DEFAULT_REGION=YOUR-DEFAULT-REGION-ID
+---
+Source the ~/.bashrc file to load these new environment variables.
+. ~/.bashrc
+---------Get credentials to configure docker login on EC2 machine----------
+   aws ecr get-login
+
+ ```
