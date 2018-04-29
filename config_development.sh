@@ -17,4 +17,9 @@ popd
  
 # install aws python client. Required by setup.py
 sudo python -m pip install boto3
- 
+
+# Remove '-e none ' from generated aws docker login string (leaving -e none results in error)
+# Store the corrected docker login command in a file and then execute it
+aws ecr get-login | tee orig-docker-login.txt | sed 's/-e none //g' | tee docker-login 
+source docker-login
+

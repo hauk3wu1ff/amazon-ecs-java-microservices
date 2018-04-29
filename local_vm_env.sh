@@ -1,4 +1,5 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+
 echo "This script sets environment variables, run script with: source ./local_vm_env.sh"
  
 # install python-virtualenv package
