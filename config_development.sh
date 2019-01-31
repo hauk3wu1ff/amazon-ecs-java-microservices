@@ -12,7 +12,7 @@ echo 2 | sudo alternatives --config java
  
 #download maven archive and unpack it
 pushd $userbin
-curl http://www-eu.apache.org/dist/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.tar.gz | tar xz
+curl http://apache.spinellicreations.com/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz | tar xz
 popd
  
 # install aws python client. Required by setup.py
