@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM frolvlad/alpine-scala:2.12
 VOLUME /tmp
 ADD spring-petclinic-rest-1.7.jar app.jar
 RUN sh -c 'touch /app.jar'
